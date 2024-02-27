@@ -62,7 +62,7 @@ export default {
       if (this.filter === 'done') {
         return this.todos.filter((todo) => todo.completed === true)
       }
-      return this.todos
+      return this.todos.sort((a, b) => a.completed - b.completed)
     },
   },
 }

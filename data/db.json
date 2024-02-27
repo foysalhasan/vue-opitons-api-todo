@@ -4,12 +4,18 @@
       "id": "0441",
       "title": "COMPLETE BLOG DESIGN",
       "desc": "...",
-      "completed": false
+      "completed": true
     },
     {
       "id": "635b",
       "title": "GET A JOB",
-      "desc": "...",
+      "desc": "Got a reputated job in Lexaeon !",
+      "completed": true
+    },
+    {
+      "id": "621f",
+      "title": "WIll carch fish",
+      "desc": "big pond ther",
       "completed": false
     }
   ]
