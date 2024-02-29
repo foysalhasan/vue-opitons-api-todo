@@ -30,9 +30,9 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import { supabase } from '../lib/supabaseClient'
 export default {
-  props: ['todo', 'uri'],
+  props: ['todo'],
   data() {
     return {
       showDesc: false,
@@ -43,23 +43,15 @@ export default {
       return this.todo.completed ? 'border-emerald-600' : 'border-rose-600'
     },
     async deleteTodo(id) {
-      try {
-        const res = await axios.delete(this.uri + id)
-        if (res.status === 200) {
-          this.$emit('delete', id)
-        }
-      } catch (err) {
-        console.log(err)
+      const { error } = await supabase.from('todos').delete().eq('id', id)
+      if (!error) {
+        this.$emit('delete', id)
       }
     },
     async checkTodo(id) {
-      try {
-        const res = await axios.patch(this.uri + id, JSON.stringify({ completed: !this.todo.completed }))
-        if (res.status === 200) {
-          this.$emit('check', id)
-        }
-      } catch (err) {
-        console.log(err)
+      const { error } = await supabase.from('todos').update({ completed: !this.todo.completed }).eq('id', id)
+      if (!error) {
+        this.$emit('check', id)
       }
     },
   },

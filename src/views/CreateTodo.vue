@@ -20,26 +20,22 @@
 </template>
 
 <script>
+import { supabase } from '../lib/supabaseClient'
 import axios from 'axios'
 export default {
   data() {
     return {
       title: '',
       desc: '',
-      uri: 'http://localhost:3000/todo',
     }
   },
   methods: {
     async handleSubmit() {
       if (!this.title || !this.desc) return
-      const data = JSON.stringify({ title: this.title, desc: this.desc, completed: false })
-      try {
-        const res = await axios.post(this.uri, data)
-        if (res.status === 201) {
-          this.$router.push('/')
-        }
-      } catch (err) {
-        console.log(err)
+      const data = { title: this.title, desc: this.desc, completed: false }
+      const { error } = await supabase.from('todos').insert(data)
+      if (!error) {
+        this.$router.push('/')
       }
     },
   },

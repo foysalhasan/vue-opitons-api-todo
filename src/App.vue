@@ -5,7 +5,6 @@
         <router-link class="uppercase pb-[1px] font-semibold text-gray-700" to="/">all todo</router-link>
         <router-link class="uppercase pb-[1px] font-semibold text-gray-700" to="/create">new todo</router-link>
       </nav>
-
       <router-view></router-view>
     </div>
   </div>

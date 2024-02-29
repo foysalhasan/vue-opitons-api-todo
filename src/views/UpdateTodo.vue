@@ -20,14 +20,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { supabase } from '../lib/supabaseClient'
 export default {
   props: ['id'],
   data() {
     return {
       title: '',
       desc: '',
-      uri: 'http://localhost:3000/todo/',
     }
   },
   mounted() {
@@ -36,25 +35,17 @@ export default {
   methods: {
     async handleSubmit() {
       if (!this.title || !this.desc) return
-      const data = JSON.stringify({ title: this.title, desc: this.desc })
-      try {
-        const res = await axios.patch(this.uri + this.id, data)
-        if (res.status === 200) {
-          this.$router.push('/')
-        }
-      } catch (err) {
-        console.log(err)
+      const data = { title: this.title, desc: this.desc }
+      const { error } = await supabase.from('todos').update(data).eq('id', this.id)
+      if (!error) {
+        this.$router.push('/')
       }
     },
     async fetchCurrentTodo() {
-      try {
-        const { data } = await axios.get(this.uri + this.id)
-        if (data) {
-          this.title = data.title
-          this.desc = data.desc
-        }
-      } catch (err) {
-        console.log(err)
+      const { data } = await supabase.from('todos').select().eq('id', this.id)
+      if (data.length) {
+        this.title = data[0].title
+        this.desc = data[0].desc
       }
     },
   },
