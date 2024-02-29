@@ -1,5 +1,6 @@
 <template>
   <div class="bg-gray-100 min-h-screen py-20 px-4 lg:px-0">
+    <img src="./assets/todo.png" alt="TODO ICON" class="w-16 mx-auto object-cover mb-6" />
     <div class="w-full lg:w-1/2 mx-auto">
       <nav class="flex gap-8 justify-center">
         <router-link class="uppercase pb-[1px] font-semibold text-gray-700" to="/">all todo</router-link>

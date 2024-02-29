@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'border-b-2 border-dashed border-gray-400 pb-3': filteredTodo.length === 0 }" class="flex justify-center gap-10 my-6">
+  <div :class="{ 'border-b-2 border-dashed border-gray-400 pb-3': filteredTodo.length === 0 }" class="flex justify-center gap-6 md:gap-10 my-6">
     <button @click="handleFilter('all')" :class="setActiveFilter('all')" class="text-sm uppercase font-semibold">ALL</button>
     <button @click="handleFilter('running')" :class="setActiveFilter('running')" class="text-sm uppercase font-semibold">IN PROGRESS</button>
     <button @click="handleFilter('done')" :class="setActiveFilter('done')" class="text-sm uppercase font-semibold">COMPLETED</button>
