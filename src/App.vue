@@ -1,17 +1,12 @@
 <template>
-  <div class="bg-gray-100 min-h-screen py-20 px-4 lg:px-0">
-    <img src="./assets/todo.png" alt="TODO ICON" class="w-16 mx-auto object-cover mb-6" />
-    <div class="w-full lg:w-1/2 mx-auto">
-      <nav class="flex gap-8 justify-center">
-        <router-link class="uppercase pb-[1px] font-semibold text-gray-700" to="/">all todo</router-link>
-        <router-link class="uppercase pb-[1px] font-semibold text-gray-700" to="/create">new todo</router-link>
-      </nav>
-      <router-view></router-view>
-    </div>
-  </div>
+  <header class="bg-gray-900 flex justify-between items-center p-4">
+    <div class="font-bold text-amber-500 text-xl">FOYSAL'S BLOG</div>
+    <nav class="flex justify-end items-center gap-4">
+      <router-link class="font-semibold text-white" :to="{ name: 'home' }">HOME</router-link>
+      <router-link class="font-semibold text-white" :to="{ name: 'create-blog' }">WRITE</router-link>
+    </nav>
+  </header>
+  <main class="px-4 py-8 bg-gray-100 min-h-screen">
+    <router-view></router-view>
+  </main>
 </template>
-<style>
-a.router-link-active {
-  @apply text-emerald-600 border-b-2 border-emerald-600;
-}
-</style>
